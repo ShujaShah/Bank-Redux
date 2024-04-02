@@ -1,18 +1,16 @@
-import { combineReducers, createStore } from "redux";
-
 const initialStateCustomer = {
   fullName: "",
   nationalId: "",
   createdAt: "",
 };
 
-export default function CustomerReducer(state = initialStateCustomer, action) {
+export default function customerReducer(state = initialStateCustomer, action) {
   switch (action.type) {
     case "customer/createCustomer":
       return {
         ...state,
-        fullName: action.payload.fullname,
-        nationalId: action.payload.nationalId,
+        fullName: action.payload.fullName,
+        nationalID: action.payload.nationalID,
         createdAt: action.payload.createdAt,
       };
     case "customer/updateName":
@@ -22,19 +20,13 @@ export default function CustomerReducer(state = initialStateCustomer, action) {
   }
 }
 
-export function createCustomer(fullName, nationalId) {
+export function createCustomer(fullName, nationalID) {
   return {
     type: "customer/createCustomer",
-    payload: {
-      fullName,
-      nationalId,
-      createdAt: new Date().toISOString(),
-    },
+    payload: { fullName, nationalID, createdAt: new Date().toISOString() },
   };
 }
+
 export function updateName(fullName) {
-  return {
-    type: "customer/updateName",
-    payload: fullName,
-  };
+  return { type: "customer/updateName", payload: fullName };
 }
